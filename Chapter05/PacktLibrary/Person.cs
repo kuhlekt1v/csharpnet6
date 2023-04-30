@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PacktLibrary
 {
-    public class Person : object
+    public partial class Person
     {
-        public string? Name;
+        [Required]
+        public string Name;
         public DateTime DateOfBirth;
         public WondersOfTheAncientWorld FavoriteAncientWonder;
         public WondersOfTheAncientWorld BucketList;
@@ -53,6 +55,55 @@ namespace PacktLibrary
         public string GetOrigin()
         {
             return $"{Name} was born on {HomePlanet}.";
+        }
+
+        public (string Name, int Number) GetFruit()
+        {
+            return (Name: "Apples", Number: 5);
+        }
+
+        public void Deconstruct(out string name, out DateTime dob)
+        {
+            name = Name;
+            dob = DateOfBirth;
+        }
+
+        public void Deconstruct(out string name, out DateTime dob, out WondersOfTheAncientWorld fav)
+        {
+            name = Name;
+            dob = DateOfBirth;
+            fav = FavoriteAncientWonder;
+        }
+
+        public string SayHello()
+        {
+            return $"{Name} says 'Hello!'";
+        }
+
+        public string SayHello(string name)
+        {
+            return $"{Name} says 'Hello, {name}!'";
+        }
+
+        public string OptionalParameters(string command = "Run!", double number = 0.0, bool active = true)
+        {
+            return string.Format(
+              format: "command is {0}, number is {1}, active is {2}",
+              arg0: command,
+              arg1: number,
+              arg2: active
+            );
+        }
+
+        public void PassingParameters(int x, ref int y, out int z)
+        {
+            // out parameters cannot have a default.
+            // AND must be initialized inside the method.
+            z = 99;
+
+            x++;
+            y++;
+            z++;
         }
 
     }
