@@ -1,10 +1,11 @@
-﻿using static System.Console;
+﻿using System.ComponentModel.DataAnnotations;
+using static System.Console;
 
 namespace PacktLibrary;
 public class Person : object, IComparable<Person>
 {
     // Fields.
-    public string? Name;
+    public string Name;
     public DateTime DateOfBirth;
     public List<Person> Children = new();
 
@@ -59,7 +60,7 @@ public class Person : object, IComparable<Person>
     }
 
     // Delegate field.
-    public event EventHandler? Shout;
+    public event EventHandler Shout;
 
     // Data field.
     public int AngerLevel;
@@ -80,7 +81,7 @@ public class Person : object, IComparable<Person>
         }
     }
 
-    public int CompareTo(Person? other)
+    public int CompareTo(Person other)
     {
         if (Name is null) return 0;
         return Name.CompareTo(other?.Name);
