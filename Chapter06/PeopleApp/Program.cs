@@ -66,3 +66,24 @@ lookupIntString.Add(key: 4, value: "Delta");
 key = 3;
 WriteLine(format: "Key {0} has value: {1}", arg0: key, arg1: lookupObject[key]);
 
+Person[] people =
+{
+    new() {Name = "Simon"},
+    new() {Name = "Jenny"},
+    new() {Name = "Michelle"},
+    new() {Name = "Rich"}
+};
+
+WriteLine("");
+WriteLine("Initial list of people");
+foreach (Person p in people)
+{
+    WriteLine($" {p.Name}");
+}
+
+WriteLine("Use person's IComparable implementation to sort.");
+Array.Sort(people);
+foreach (Person p in people)
+{
+    WriteLine($" {p.Name}");
+}
